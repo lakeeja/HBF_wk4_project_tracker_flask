@@ -62,16 +62,16 @@ def make_new_student(first_name, last_name, github):
         first=first_name, last=last_name)
 
 
-def get_project_by_title(title):
+def get_project_by_title(input_title):
     """Given a project title, print information about the project."""
 
     QUERY = """
         SELECT title, description, max_grade
         FROM Projects
-        WHERE title = :title
+        WHERE title = :placeholder_title
         """
 
-    db_cursor = db.session.execute(QUERY, {'title': title})
+    db_cursor = db.session.execute(QUERY, {'placholder_title': input_title})
 
     row = db_cursor.fetchone()
 

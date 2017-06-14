@@ -52,12 +52,16 @@ def student_add():
 @app.route('/project')
 def project_info():
     """ list info about a project """
+  
     title = request.args.get('title')
-    hackbright.get_project_by_title(title)
 
-    projects = render_template("student_search.html",
-                                title=title)
-    return project
+    title, description, max_grade = hackbright.get_project_by_title(title)
+
+    projects = render_template("project_info.html",
+                                title=title,
+                                description=description,
+                                max_grade=max_grade)
+    return projects #incomplete
 
 
 if __name__ == "__main__":
